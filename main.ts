@@ -17,9 +17,9 @@ await mongoClient.connect();
 console.info("Connected to MongoDB");
 
 const mongoDB = mongoClient.db("Practica5");
-const UsersCollection = mongoDB.collection<UserModel>("users");
-const CommentsCollection = mongoDB.collection<CommentModel>("comments");
-const PostsCollection = mongoDB.collection<PostModel>("posts");
+const UserCollection = mongoDB.collection<UserModel>("users");
+const CommentCollection = mongoDB.collection<CommentModel>("comments");
+const PostCollection = mongoDB.collection<PostModel>("posts");
 
 const server = new ApolloServer({
   typeDefs: schema,
@@ -27,7 +27,7 @@ const server = new ApolloServer({
 });
 
 const { url } = await startStandaloneServer(server, {
-  context: async () => ({ UsersCollection, CommentsCollection, PostsCollection }),
+  context: async () => ({ UserCollection, CommentCollection, PostCollection }),
 });
 
 console.info(`Server ready at ${url}`);

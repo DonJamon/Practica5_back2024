@@ -252,6 +252,7 @@ export const resolvers = {
         ctx: Context) => {
         const existsUser = await ctx.UserCollection.findOneAndDelete({  _id: new ObjectId(args.id) });
         if(!existsUser) throw new GraphQLError("User not found");
+        return true;
     },
     deletePost: async (
       _: unknown,
@@ -259,6 +260,7 @@ export const resolvers = {
       ctx: Context) => {
       const existsPost = await ctx.PostCollection.findOneAndDelete({  _id: new ObjectId(args.id) });
       if(!existsPost) throw new GraphQLError("Post not found");
+      return true;
   },
   deleteComment: async (
     _: unknown,
@@ -266,6 +268,7 @@ export const resolvers = {
     ctx: Context) => {
     const existsComment = await ctx.CommentCollection.findOneAndDelete({  _id: new ObjectId(args.id) });
     if(!existsComment) throw new GraphQLError("Comment not found");
+    return true;
 },
 
 updateUser: async (
